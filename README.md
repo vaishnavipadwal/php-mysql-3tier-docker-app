@@ -7,7 +7,7 @@ I set up a 3-tier application using:
 ## Steps:
 ### I Downloaded project folder which include frontend, backend, and database files 
 - Means fully worikng project
-### create Dockerfile inside backend folder for PHP backend
+### Then Create Dockerfile inside backend folder for PHP backend
 ```
 FROM php:8.0-apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql
@@ -16,7 +16,7 @@ RUN chown -R www-data:www-data /var/www/html
 EXPOSE 80
 CMD ["apache2-foreground"]
 ```
-### create Dockerfile inside sql folder for My SQL database
+###  Then Create Dockerfile inside sql folder for My SQL database
 ```
 FROM mysql:5.7
 ENV MYSQL_ROOT_PASSWORD=rootpassword
@@ -26,7 +26,7 @@ ENV MYSQL_PASSWORD=password
 COPY omrsdb.sql /docker-entrypoint-initdb.d/
 EXPOSE 3306
 ```
-### create Docker-compose file in project main folder for My SQL database
+###  Then Create Docker-compose file in project main folder for My SQL database
 -A Docker Compose file (docker-compose.yml) allows us to define and manage multiple containers in a structured way. Instead of running separate docker run commands for each container, we can use Docker Compose to handle everything with a single command.
 ```
 version: '3.8'
