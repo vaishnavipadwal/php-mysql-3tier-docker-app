@@ -93,6 +93,6 @@ docker-compose up -d --build
 docker ps
 ```
 ### test the setup 
-Frontend: instance public-IP
-Backend: instance public-IP with 8080 port number
-Database: instance public-IP with 3306
+- Frontend: instance public-IP
+- Backend: instance public-IP with 8080 port number
+- Database: instance public-IP with 3306
