@@ -2,21 +2,22 @@ version: '3.8'
 
 services:
   database:
-    build: ./database
+    image: mysql:latest
     container_name: mysql_container
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
+      MYSQL_DATABASE: omrsdb
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
+      - ./SQL File:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql
 
   backend:
-    build: ./backend
+    build: ./admin
     container_name: php_container
     restart: always
     depends_on:
@@ -24,18 +25,22 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./backend:/var/www/html
+      - ./admin:/var/www/html
 
   frontend:
-    image: nginx:latest
+    image: nginx
     container_name: nginx_container
     restart: always
+    depends_on:
+      - backend
     ports:
       - "80:80"
     volumes:
-      - ./frontend:/usr/share/nginx/html
-    depends_on:
-      - backend
+      - ./css:/usr/share/nginx/html/css
+      - ./fonts:/usr/share/nginx/html/fonts
+      - ./images:/usr/share/nginx/html/images
+      - ./index.php:/usr/share/nginx/html/index.php
+    command: [ "nginx", "-g", "daemon off;" ]
 
 volumes:
   mysql_data:
