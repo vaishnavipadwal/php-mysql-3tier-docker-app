@@ -1,4 +1,6 @@
-# 3-Tier Architecture
+# 3-Tier PHP-MySQL Web Application Deployment using Docker Compose
+
+
 I set up a 3-tier application using:
 - Frontend: Nginx (HTML, CSS)
 - Backend: PHP 
